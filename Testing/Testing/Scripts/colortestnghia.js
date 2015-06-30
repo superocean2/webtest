@@ -88,11 +88,6 @@ function colorTestRenderLevel(level) {
     var g = Math.floor(Math.random() * (255 - colordiff));
     var b = Math.floor(Math.random() * (255 - colordiff));
     $('#' + colorTestContainerId + ' DIV').css({
-        'float': 'left',
-        'borderRadius': '10px',
-        'cursor': 'pointer',
-        'border': '2px solid #fff',
-        'boxSizing': 'border-box',
         'width': (100 / grid).toString() + '%',
         'height': (100 / grid).toString() + '%',
         'backgroundColor': 'rgb(' + r.toString() + ',' + g.toString() + ',' + b.toString() + ')'

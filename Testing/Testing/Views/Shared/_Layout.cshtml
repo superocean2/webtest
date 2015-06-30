@@ -36,23 +36,28 @@
 
 
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12">ads top</div>
+        <div class="row ads">
+            ads top
         </div>
+        
         <div class="row">
-            <div class="col-xs-12">
-            @RenderBody()
+            <div>
+                @RenderBody()
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                ads bottom
-            </div>
+        <div class="row ads">
+            ads bottom
         </div>
     </div> <!-- /container -->
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        window.addEventListener('orientationchange', function () {
+            if (window.innerHeight < window.innerWidth) {
+                document.getElementsByTagName('body').style.transform = "rotate(90deg)";
+            }
+        });
+    </script>
 </body>
 </html>

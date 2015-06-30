@@ -1,21 +1,92 @@
 ﻿@{
     ViewBag.Title = "Color";
 }
-
+<div class="row result">
+    <div class="col-xs-5">0</div>
+    <div class="col-xs-5">0</div>
+    <div class="col-xs-2">0</div>
+</div>
 <div id="testboard">
 
 </div>
 
-@section styles
-{
-    <style>
-        #testboard
-        {
-            display:block;
+
+<style type="text/css">
+    #testboard {
+        display: block;
+        width: 300px;
+        height: 300px;
+    }
+
+        #testboard div {
+            float: left;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
         }
-        
-    </style>
-}
+
+    .ads
+    {
+        padding:20px;
+    }
+    .result {
+        border-radius: 10px;
+        border: 2px solid #05597A;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #0880AF;
+        margin-left: 0;
+        margin-bottom:20px;
+        width: 300px;
+    }
+     @@media screen and (min-width: 370px) {
+        #testboard; {
+            width: 350px;
+            height: 350px;
+        }
+        .result
+        {
+            width:350px;
+        }
+    }
+
+    @@media screen and (min-width: 460px) {
+        #testboard {
+            width: 400px;
+            height: 400px;
+        }
+
+        .result {
+            width: 400px;
+        }
+    }
+
+    @@media screen and (min-width: 550px) {
+        #testboard {
+            width: 500px;
+            height: 500px;
+        }
+
+        .result {
+            width: 500px;
+        }
+    }
+
+    @@media screen and (min-width: 768px) {
+        #testboard {
+            width: 600px;
+            height: 600px;
+        }
+
+        .result {
+            width:600px;
+        }
+</style>
+
 @section scripts
 {
     <script src="~/Scripts/colortestnghia.js"></script>
