@@ -1,7 +1,7 @@
 ﻿body {
-    font-size: .85em;
+    font-size: 1.5em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
+    color: #1E1E1E;
     background-color: #fff;
 }
 
@@ -60,9 +60,13 @@ textarea {
     display: none;
 }
 
-.title
+#title
 {
     font-weight:bold;
-    font-size:20px;
-    text-align:right;
+    font-size:2.5em;
+    text-align:center;
+}
+.navbar-brand
+{
+    padding:7px 10px !important;
 }

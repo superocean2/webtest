@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+
+        $(document).ready(function () {
+            speedtestReset();
+            //Hiding result display popup
+            $("#resultdisplay").hide();
+            $("#resultdisplay .playagain").click(function () {
+                $("#mobilebody").css("background-color", "#ed3847");
+                $("#ac6").css("background-image", "url('/img/vn/ac_6.png')");
+                $("#ac5").css("background-image", "url('/img/vn/ac_5.png')");
+                $("#ac4").css("background-image", "url('/img/vn/ac_4.png')");
+                $("#ac3").css("background-image", "url('/img/vn/ac_3.png')");
+                $("#ac2").css("background-image", "url('/img/vn/ac_2.png')");
+                $("#ac1").css("background-image", "url('/img/vn/ac_1.png')");
+                $("#eyedoctordiv").css("visibility", "visible");
+                $("#showmenu").css("visibility", "visible");
+                $("#acsbg").css("background-size", "0%");
+                $(".clock").css("color", "#b2d52b");
+                $("#timeleft").css("border", "5px solid #2c6dac");
+                speedtestReset();
+                $("#resultdisplay").hide();
+                $("#resultdisplay .prize-message").css("display", "hidden");
+                $("#timeleft").show();
+                $("#testbg").show();
+                $("#bluebar").css("width", "0%");
+            });
+        });
+        function speedtestReset() {
+            GameRounds++;
+            ColorTestReset('colortest');
+        }
+        var GameRounds = 0;
+        //This is called when the score changes (by the speedtest)
+        var TimeRunningOutAudio = new Audio('/content/sound/clock-ticking.mp3');
+        function speedtestScoreUpdate(score, highscore, time, penalty) {
+            $(".yourscore").html("" + score.toString() + "");
+            $(".yourpenalty").html("" + penalty.toString() + "");
+            $("#barbest").html("Kết quả tốt nhất: " + highscore.toString() + "");
+            $("#barscore").html("Điểm: " + score.toString() + "");
+            $("#barerror").html("Các lỗi: " + penalty.toString() + "");
+
+            if (time > 0 && time < 6) {
+                if (TimeRunningOutAudio.paused) {
+                    TimeRunningOutAudio.play();
+                }
+            } else {
+                if (!TimeRunningOutAudio.paused) {
+                    TimeRunningOutAudio.pause();
+                    TimeRunningOutAudio.currentTime = 0;
+                }
+            }
+
+            var tm = time.toFixed(1).split(".");
+            if (time > 6) {
+                $("#timeleft").html("<div class=\"clock\">" + tm[0] + "</div>");
+            } else {
+                $("#timeleft").html("<div class=\"clock\">" + tm[0] + "<span style=\"font-size: 30px;\">." + tm[1] + "</span></div>");
+            }
+
+            if (highscore > 29) {
+                $("#greenbar").css("width", "100.00%");
+            } else {
+                $("#greenbar").css("width", (highscore * 100 / 29).toFixed(2) + "%");
+            }
+            if (score > 29) {
+                $("#acsbg").css("background-size", "100.00%");
+                $("#bluebar").css("width", "100.00%");
+            } else {
+                $("#acsbg").css("background-size", (score * 100 / 29).toFixed(2) + "%");
+                $("#bluebar").css("width", (score * 100 / 29).toFixed(2) + "%");
+            }
+            if (score == 25 && time > 14.9) {
+                $("#ac6").css("background-image", "url('/img/vn/ac_6-2.png')");
+            }
+            if (score == 20 && time > 14.9) {
+                $("#ac5").css("background-image", "url('/img/vn/ac_5-2.png')");
+            }
+            if (score == 15 && time > 14.9) {
+                $("#ac4").css("background-image", "url('/img/vn/ac_4-2.png')");
+            }
+            if (score == 10 && time > 14.9) {
+                $("#ac3").css("background-image", "url('/img/vn/ac_3-2.png')");
+            }
+            if (score == 5 && time > 14.9) {
+                $("#ac2").css("background-image", "url('/img/vn/ac_2-2.png')");
+            }
+            if (score == 1 && time > 14.9) {
+                $("#ac1").css("background-image", "url('/img/vn/ac_1-2.png')");
+            }
+            if (score == 0) {
+            }
+
+
+
+            if (time < 6) {
+                $(".clock").css("color", "#ef3d4e");
+                $("#timeleft").css("border", "5px solid #ef3d4e");
+            } else {
+                $(".clock").css("color", "#a1e03d");
+                $("#timeleft").css("border", "5px solid #3d9fe7");
+            }
+        }
+        function getFacebookDivContent(highScore, imageName, headerText, contentText) {
+            var retHtml = "";
+            retHtml = retHtml + "<a onclick=\"window.open('http://wvw.igame.com/ETredirfb.php?highScore=" + highScore + "&e1=XXX||18|15|68|&e2=5ddb42df34b891dafc9eb1081b8691c3de1c0379fe29&un=&cy=VN&lang=VN','',' scrollbars=yes,menubar=no,width=750, height=640, resizable=yes,toolbar=no,location=no,status=no')\" style=\"color: #000000;\">";
+            retHtml = retHtml + "<div class=\"facebook-share\" style=\"background-image: url('/img/vn/" + imageName + ".png'); \">";
+            retHtml = retHtml + "<div class=\"character-title\">";
+            retHtml = retHtml + headerText;
+            retHtml = retHtml + "</div>";
+            retHtml = retHtml + contentText;
+            retHtml = retHtml + "<div class=\"share-button-placeholder\"><div class=\"share-button\">Chia sẻ trên Facebook và thách thức các bạn của bạn</div></div>";
+            retHtml = retHtml + "</div>";
+            retHtml = retHtml + "</a>";
+            return retHtml;
+        }
+
+        //This is called when the game ends (by the colortest)
+        function speedtestPublishResult(score, highscore, time, penalty) {
+            speedtestScoreUpdate(score, highscore, time, penalty);
+            $("#resultdisplay .message").html("<span class='nowrap'>Kết quả tốt nhất: <span class=\"resultbest\">" + highscore.toString() + "</span></span> <span class='nowrap'>Điểm: <span class=\"resultscore\">" + score.toString() + "</span></span> <span class='nowrap' id='errorstext'>Các lỗi: <span class=\"resultpenalty\">" + penalty.toString() + "</span></span>");
+            $("#resultdisplay .prize-div").show();
+            $("#resultdisplay .prize-message").hide();
+            $("#resultdisplay .prize-formcontainer").hide();
+            $("#bubble").html("<p>Kết quả<br>tốt nhất của bạn là<br><span style=\"font-weight: bold; font-size: 36px;\">" + highscore.toString() + "!</span></p>");
+            $("#eyedoctordiv").css("visibility", "hidden");
+            $("#showmenu").css("visibility", "hidden");
+            $("#timeleft").hide();
+            $("#testbg").hide();
+
+            //			$.get( "/ETtrack.php?n=3&e1=XXX||18|15|68|&e2=5ddb42df34b891dafc9eb1081b8691c3de1c0379fe29&un=&cy=VN&l="+score.toString());
+            $("#resultdisplay .prize-div").load("/ETprize.php?i=ig&e1=XXX||18|15|68|&e2=5ddb42df34b891dafc9eb1081b8691c3de1c0379fe29&un=&cy=VN&lang=VN&bs=" + highscore.toString() + "&gr=" + GameRounds.toString() + "&bwidth=" + $(window).width().toString());
+            $("#resultdisplay .prize2-div").load("/ETprize2.php?i=ig&e1=XXX||18|15|68|&e2=5ddb42df34b891dafc9eb1081b8691c3de1c0379fe29&un=&cy=VN&lang=VN&bs=" + highscore.toString() + "&gr=" + GameRounds.toString() + "&bwidth=" + $(window).width().toString());
+
+
+
+
+
+            if (highscore > 29) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_7-2", "rô bốt", "Sắc giác và kỹ năng sống của bạn là không thể tin được.  Bạn có thể nhìn được con muỗi ở cách xa vài dặm."));
+                $("#resultdisplay .facebook-div").show();
+            } else if (highscore > 24) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_6-2", "diều hâu", "Wow, bạn có sắc giác tuyệt vời. Bạn có thể nhìn được một câu sâu ở trên ngọn cây."));
+                $("#resultdisplay .facebook-div").show();
+            } else if (highscore > 19) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_5-2", "con hổ", "Sắc giác của bạn rất tuyệt vời. Bạn không có rắc rối gì để sống sót trong rừng già. Bạn có thể nhìn thấy khi nào chú hổ hàng xóm đi vào nhà tắm ở rất xa."));
+                $("#resultdisplay .facebook-div").show();
+            } else if (highscore > 14) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_4-2", "con mèo", "Bạn có sắc giác tốt. Các chú chuột sẽ phải trốn khi bạn di chuyển"));
+                $("#resultdisplay .facebook-div").show();
+            } else if (highscore > 9) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_3-2", "con chó", "Bạn có sắc giác khá ổn. Bạn nhìn được hầu hết các miếng xương mà người ta ném cho, nhưng đôi khi bạn cũng để sót."));
+                $("#resultdisplay .facebook-div").show();
+            } else if (highscore > 4) {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_2-2", "chuột chũi", "Bạn có sắc giác tạm ổn. Bạn nhìn thấy bức tường gần nhất nhưng không đi được xa vì bạn có thể bị mất lối. "));
+                $("#resultdisplay .facebook-div").show();
+            } else {
+                $("#resultdisplay .facebook-div").html(getFacebookDivContent(highscore.toString(), "ac_1-2", "con dơi", "Sắc giác của bạn không có gì để viết về nó. Dơi sống trong bóng tối và sử dụng các giác quan khác chứ không phải thị giác, và bạn cũng sẽ làm vậy."));
+                $("#resultdisplay .facebook-div").show();
+            }
+
+
+            $("#resultdisplay").show();
+        }
+    </script>
+</body>
+</html>
