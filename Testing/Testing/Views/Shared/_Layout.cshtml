@@ -13,7 +13,7 @@
     @RenderSection("styles", false)
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    @*<nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,8 +32,11 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
+    </nav>*@
+    <div class="hidden-xs title_wrapper">
+        <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">@RenderSection("titlegame",true)</span>
+    </div>
 
     <div class="container">
         <div class="row ads">
