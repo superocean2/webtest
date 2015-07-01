@@ -22,7 +22,7 @@ var colorTestContainerId = 'game';
 var colorTestLevel = 1;
 var colorTestStartTime = 0;
 var colorTestTimeleft = 15;
-var colorTestHighscore = 0;
+
 function ColorTestReset(container) {
     if (container) colorTestContainerId = container;
     colorTestLevel = 1;
@@ -32,30 +32,21 @@ function ColorTestReset(container) {
     colorTestStartTime = 0;
     colorTestRefreshTime();
 };
-function colorTestUpdateScore(startclock) {
+function colorTestUpdateScore() {
     var today = new Date();
-    if (startclock) {
-        if (colorTestStartTime == 0) colorTestStartTime = today.getTime();
-    }
 
-
-
-    if (colorTestStartTime > 0) colorTestTimeleft = Math.round((15 - colorTestTimePenalty * colorTestPenaltySec - today.getTime() / 1000 + colorTestStartTime / 1000) * 100) / 100;
+    if (colorTestStartTime > 0) colorTestTimeleft = Math.round(15-(today.getTime()-colorTestStartTime)/1000);
 
     if (colorTestTimeleft < 0) colorTestTimeleft = 0;
-    if (colorTestLevel > colorTestHighscore) colorTestHighscore = colorTestLevel;
+
     if (colorTestTimeleft > 0) {
-        if (colorTestTimeleft > 5) {
-            speedtestScoreUpdate((colorTestLevel - 1).toFixed(0), (colorTestHighscore - 1).toFixed(0), colorTestTimeleft, colorTestPenalty.toFixed(0));
-        } else {
-            speedtestScoreUpdate((colorTestLevel - 1).toFixed(0), (colorTestHighscore - 1).toFixed(0), colorTestTimeleft, colorTestPenalty.toFixed(0));
-        }
+        speedtestScoreUpdate((colorTestLevel-1).toFixed(0),colorTestTimeleft);
     } else {
-        speedtestPublishResult((colorTestLevel - 1).toFixed(0), (colorTestHighscore - 1).toFixed(0), colorTestTimeleft, colorTestPenalty.toFixed(0));
+        speedtestPublishResult((colorTestLevel-1).toFixed(0));
     }
 };
 function colorTestRefreshTime() {
-    colorTestUpdateScore(false);
+    colorTestUpdateScore();
     if (colorTestTimeleft > 0) {
         setTimeout(colorTestRefreshTime, 100);
     }
@@ -68,8 +59,7 @@ function getRandomInt(min, max) {
 }
 
 function colorTestRenderLevel(level) {
-    //if (colorTestTimeleft == 0) return;
-    //colorTestUpdateScore(true);
+    if (colorTestTimeleft == 0) return;
 
     var container = $('#' + colorTestContainerId);
     container.empty();

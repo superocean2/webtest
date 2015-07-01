@@ -10,7 +10,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
-    @RenderSection("styles", false);
+    @RenderSection("styles", false)
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -40,10 +40,8 @@
             ads top
         </div>
         
-        <div class="row">
-            <div>
+        <div style="width:100%">
                 @RenderBody()
-            </div>
         </div>
         <div class="row ads">
             ads bottom
@@ -52,12 +50,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        window.addEventListener('orientationchange', function () {
-            if (window.innerHeight < window.innerWidth) {
-                document.getElementsByTagName('body').style.transform = "rotate(90deg)";
-            }
-        });
-    </script>
 </body>
 </html>
