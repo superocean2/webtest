@@ -39,18 +39,19 @@
     </div>
 
     <div class="container">
-        <div class="row ads visible-xs-block">
-            ads top
+        <div class="row ads visible-xs-block" style="text-align:center">
+            <img style="width:79%;" src="~/Content/images/textadstopbottom.png" />
         </div>
         
-        <div class="row" style="width:100%">
-            <div class="col-sm-4 hidden-xs">ads left</div>
-            <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-3 hidden-xs" style="float:left"><img src="~/Content/images/leftads.png" /></div>
+            <div class="col-sm-9">
                 @RenderBody()
             </div>
         </div>
-        <div class="row ads">
-            ads bottom
+
+        <div class="ads">
+            <img style="width:79%;" src="~/Content/images/textadstopbottom.png" />
         </div>
     </div> <!-- /container -->
     @Scripts.Render("~/bundles/jquery")
