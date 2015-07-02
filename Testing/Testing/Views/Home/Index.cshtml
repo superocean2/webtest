@@ -1,8 +1,31 @@
 ﻿@{
     ViewBag.Title = "Color";
 }
-<div class="result-wrapper" style="display:none"></div>
-<div class="main_content">
+<div class="result-wrapper">
+    <div class="result_content">
+        <div><span class="score-bottom-title">Your score:&nbsp;</span><span class="rect-bg-bottom">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Content/images/play-again.png" /></div>
+        <div style="margin: 20px 0 0; border-top: 2px #CECBC0 dashed; border-right: 2px #CECBC0 dashed;padding:10px; ">
+            <div style="display:inline-block;margin-right:20px;"><img style="width:70%" src="~/Content/images/1.png" alt="" /></div>
+            <div style="display:inline-block;text-align:left;vertical-align:middle">
+                <span>Mouse</span>
+                You are a mouse <br />
+                that not a good mouse<br />
+                that not a good mouse
+            </div>
+        </div>
+        <div class="facebook-share" style="border-right: 2px #CECBC0 dashed;padding-top:20px; ">
+            <div class="share-button">Share on Facebook<br>and challenge your friends</div>
+        </div>
+    </div>
+    <div class="ads-main">
+        <div style="margin-left:40px;">
+            <img src="~/Content/images/addisplay.png" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div style="display:none" class="main_content">
     <div id="text-board-wrapper">
         <div id="testboard">
 
@@ -26,11 +49,48 @@
             Which one of the boxes has an irregular color?<br />
             Choose it
         </div>
-        <div style="padding:5px" onclick="$('#ready').hide();" class="rect-bg">Ready!!!</div>
+        <div style="padding:5px" onclick="$('#ready').hide();" class="rect-bg">Start</div>
     </div>
 </div>
+
+
+
 <style type="text/css">
-    #ready {
+    .share-button {
+        background-image: url("/content/images/facebook-share-blank.png");
+        background-repeat: no-repeat;
+        color: #FFF;
+        font-family: "helvetica neue",helvetica,arial,"lucida grande",sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        height: 70px;
+        line-height: 22px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 45px;
+        padding-top: 8px;
+        position: relative;
+        text-align: left;
+        text-shadow: 0px -1px rgba(0, 0, 0, 0.5);
+        width: 260px;
+        cursor:pointer;
+    }
+    .result-wrapper 
+    {
+        width:100%;
+    }
+
+    .result_content 
+    {
+        float:left;
+        width:50%;
+    }
+    .ads-main
+    {
+        float:left;
+        width:50%;
+    }
+     #ready {
         position: absolute;
         background-color: #e5dbdb;
         opacity: 0.8;
@@ -39,7 +99,7 @@
         height: 300px;
         top: 0;
         left: 15px;
-        padding-top:85px;
+        padding-top: 85px;
     }
 
     .ready_text {
@@ -87,7 +147,7 @@
         font-weight: bold;
         font-size: 25px;
         color: #fff;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .rect-bg-bottom {
@@ -98,7 +158,7 @@
         font-size: 22px;
         color: #fff;
         padding: 3px 20px;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     #testboard {
@@ -199,7 +259,7 @@
         function speedtestScoreUpdate(score, timeleft) {
             $(".score").html(score);
             $(".timeleft").html(timeleft);
-            if (timeleft<6) {
+            if (timeleft < 6) {
                 $(".timeleft").css("color", "#e20e0e");
 
             }

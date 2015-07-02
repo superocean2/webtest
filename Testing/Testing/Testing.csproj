@@ -149,7 +149,9 @@
     <Compile Include="Utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\facebook-share-blank.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\play-again.png" />
     <Content Include="Content\sound\clock-ticking.mp3" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
