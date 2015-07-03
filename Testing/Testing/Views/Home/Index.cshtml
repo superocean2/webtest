@@ -1,61 +1,118 @@
 ﻿@{
-    ViewBag.Title = "Color";
+    ViewBag.Title = "Funny|Eye Testing";
+    string titleGame = "Eye Testing";
+    string scoreText = "Score";
+    string startText = "Start";
+    string infoGame = "Which one of the boxes has an irregular color?<br />Choose it";
+    string yourScore = "Your score";
+    string shareFacebook = "Share on Facebook<br/>and challenge your friends";
+    string bat = "You are a Bat <br/> You can't see anything in dark <br/> Be careful!!!";
+    string mole = "You are a Mole <br/> You can see closest things <br/>But don't go far away!";
+    string dog = "You are a Dog <br/> You can see almost food in dark <br/>But sometimes not lucky!";
+    string cat = "You are a Cat <br/> You see very good in dark <br/>But the mouse can hide!";
+    string tiger = "You are a Tiger <br/> You can see through the forest <br/>Excellent!";
+    string hawk = "You are a Hawk <br/> You can see very far <br/>Even the worm can't escape!";
+    string alien = "You are a Alien <br/> You can see all things <br/>That's incredible!!!";
+
+    if (Testing.Utils.Helpers.IsVietnamese())
+    {
+        ViewBag.Title = "Funny|Kiểm Tra Mắt";
+        titleGame = "Kiểm Tra Mắt";
+        scoreText = "Điểm";
+        startText = "Bắt đầu";
+        infoGame = "Hình nào có màu sắc khác so với những hình khác?<br /> Hãy chọn nó";
+        yourScore = "Điểm của bạn";
+        shareFacebook = "Chia sẽ trên Facebook<br/>và thách thức bạn của bạn";
+        bat = "Bạn như là con dơi <br/> Bạn không thể thấy gì về đêm <br/> Hãy cẩn thận!!!";
+        mole = "Bạn là con chuột chũi <br/> Bạn có thể thấy những vật gần nhất <br/>Nhưng đừng đi xa nhé!";
+        dog = "Bạn là con chó <br/> Bạn có thể thấy hầu như mọi thức ăn <br/>Nhưng đôi khi bỏ sót!";
+        cat = "Bạn là con mèo <br/> Bạn có thể thấy rất tôt trong đêm <br/>Nhưng con chuột có thể trốn bạn!";
+        tiger = "Bạn là con cọp <br/> Bạn có thể nhìn xuyên qua rừng <br/>Tuyệt vời!";
+        hawk = "Bạn là con chim ưng <br/> Bạn có thể nhìn thấy rất xa <br/>Con giun cũng không thể thoát khỏi bạn!";
+        alien = "Bạn là người ngoài hành tinh<br/> Bạn thấy mọi thứ <br/>Không thể tin được!!!";
+    }
+
 }
-<div class="result-wrapper">
+<div style="display:none" class="result-wrapper">
     <div class="result_content">
-        <div><span class="score-bottom-title">Your score:&nbsp;</span><span class="rect-bg-bottom">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Content/images/play-again.png" /></div>
-        <div style="margin: 20px 0 0; border-top: 2px #CECBC0 dashed; border-right: 2px #CECBC0 dashed;padding:10px; ">
-            <div style="display:inline-block;margin-right:20px;"><img style="width:70%" src="~/Content/images/1.png" alt="" /></div>
-            <div style="display:inline-block;text-align:left;vertical-align:middle">
-                <span>Mouse</span>
-                You are a mouse <br />
-                that not a good mouse<br />
-                that not a good mouse
+        <div><span class="score-bottom-title">@yourScore:&nbsp;</span><span class="total-score rect-bg-bottom">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="cursor:pointer" onclick="resetGame()" src="~/Content/images/play-again.png" /></div>
+        <div class="wrapper-result-desc">
+            <div class="wrapper-result-image"><img src="/Content/images/1_jzs.png" alt="" /></div>
+            <div class="wrapper-result-text">
+
             </div>
         </div>
         <div class="facebook-share" style="border-right: 2px #CECBC0 dashed;padding-top:20px; ">
-            <div class="share-button">Share on Facebook<br>and challenge your friends</div>
+            <div class="share-button">@Html.Raw(shareFacebook)</div>
         </div>
     </div>
     <div class="ads-main">
-        <div style="margin-left:40px;">
-            <img src="~/Content/images/addisplay.png" />
+        <div class="ads-main-wrapper">
+            <img style="width:100%" src="~/Content/images/addisplay.png" />
         </div>
     </div>
     <div class="clearfix"></div>
 </div>
 
-<div style="display:none" class="main_content">
+<div class="main_content">
     <div id="text-board-wrapper">
         <div id="testboard">
 
         </div>
         <div id="scoreboard">
             <div style="padding-left:20px"><span class="circle_bg timeleft">0</span></div>
-            <div class="score-title">Score</div>
+            <div class="score-title">@scoreText</div>
             <div class="rect-bg score">0</div>
         </div>
     </div>
     <div class="clearfix"></div>
     <div style="margin-top:10px;">
         <div class="result">
-            <div style="display:inline-block" class="score-bottom-title">Score</div><div style="display:inline-block;margin:0 50px 0 20px;" class="rect-bg-bottom score">0</div>
+            <div style="display:inline-block" class="score-bottom-title">@scoreText</div><div style="display:inline-block;margin:0 50px 0 20px;" class="rect-bg-bottom score">0</div>
             <div style="display:inline-block" class="circle_bg_bottom timeleft">0</div>
         </div>
     </div>
 
     <div id="ready">
         <div class="ready_text">
-            Which one of the boxes has an irregular color?<br />
-            Choose it
+            @Html.Raw(infoGame)
         </div>
-        <div style="padding:5px" onclick="$('#ready').hide();" class="rect-bg">Start</div>
+        <div style="padding:5px" onclick="$('#ready').hide();" class="rect-bg">@startText</div>
     </div>
 </div>
 
 
 
 <style type="text/css">
+    .wrapper-result-desc {
+        margin: 20px 0 0;
+        border-top: 2px #CECBC0 dashed;
+        border-right: 2px #CECBC0 dashed;
+        padding: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .wrapper-result-image {
+        display: inline-block;
+        margin-right: 20px;
+        width: 30%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .wrapper-result-text {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+        width: 55%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
     .share-button {
         background-image: url("/content/images/facebook-share-blank.png");
         background-repeat: no-repeat;
@@ -73,24 +130,30 @@
         text-align: left;
         text-shadow: 0px -1px rgba(0, 0, 0, 0.5);
         width: 260px;
-        cursor:pointer;
-    }
-    .result-wrapper 
-    {
-        width:100%;
+        cursor: pointer;
     }
 
-    .result_content 
-    {
-        float:left;
-        width:50%;
+    .result-wrapper {
+        width: 100%;
     }
-    .ads-main
-    {
-        float:left;
-        width:50%;
+
+    .result_content {
+        float: left;
+        width: 100%;
+        margin-bottom: 20px;
     }
-     #ready {
+
+    .ads-main-wrapper {
+        margin-left: 0;
+    }
+
+    .ads-main {
+        float: left;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    #ready {
         position: absolute;
         background-color: #e5dbdb;
         opacity: 0.8;
@@ -222,6 +285,19 @@
 
 
     @@media only screen and (min-width: 570px) {
+        .result_content {
+            width: 50%;
+        }
+
+        .ads-main-wrapper {
+            margin-left: 40px;
+        }
+
+        .ads-main {
+            width: 50%;
+            margin-top: 50px;
+        }
+
         #testboard {
             width: 350px;
             height: 350px;
@@ -278,12 +354,54 @@
             speedtestScoreUpdate(score, 0);
             $(".main_content").hide();
             $(".result-wrapper").show();
-            $(".result-wrapper").html("this is result");
+            var image;
+            var text;
+            if (1 <= score && score < 4) {
+                image = "/Content/images/1_jzs.png";
+                text="@Html.Raw(bat)";
+            }
+            if (4 <= score && score < 8) {
+                image = "/Content/images/2_afy.png";
+                text = "@Html.Raw(mole)";
+            }
+            if (8 <= score && score < 11) {
+                image = "/Content/images/3_koi.png";
+                text = "@Html.Raw(dog)";
+            }
+            if (11 <= score && score < 15) {
+                image = "/Content/images/4_oui.png";
+                text = "@Html.Raw(cat)";
+            }
+            if (15 <= score && score < 20) {
+                image = "/Content/images/5_trs.png";
+                text = "@Html.Raw(hawk)";
+            }
+            if (20 <= score && score < 30) {
+                image = "/Content/images/6_hty.png";
+                text = "@Html.Raw(tiger)";
+            }
+            if (30 <= score) {
+                image = "/Content/images/7_ndf.png";
+                text = "@Html.Raw(alien)";
+            }
+            getResult(score,image,text);
+        }
+
+        function getResult(score,image,resultText)
+        {
+            $(".total-score").html(score);
+            $(".wrapper-result-image img").attr("src", image);
+            $(".wrapper-result-text").html(resultText);
+        }
+        function resetGame() {
+            ColorTestReset("testboard");
+            $(".result-wrapper").hide();
+            $(".main_content").show();
         }
     </script>
 }
 
 @section titlegame
 {
-    Color Test
+    @titleGame
 }

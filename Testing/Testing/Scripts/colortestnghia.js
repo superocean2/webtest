@@ -93,7 +93,8 @@ function colorTestRenderLevel(level) {
 
     });
     $('#' + colorTestContainerId + ' DIV.missclick').click(function () {
-        alert("end");
-
+        if (colorTestStartTime>0) {
+            speedtestPublishResult((colorTestLevel - 1).toFixed(0));
+        }
     });
 };
