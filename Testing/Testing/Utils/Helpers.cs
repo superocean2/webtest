@@ -2,16 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Testing.Utils
 {
+    public class FaceBookAPI
+    {
+        public string AppID { get; set; }
+        public string AppSecret { get; set; }
+    }
     public static class Helpers
     {
+        public static FaceBookAPI GetFacebookAPI()
+        {
+            return new FaceBookAPI() { AppID = "410938229108210", AppSecret = "1e6856af57bde3004223b6aba5fbc292" };
+        }
+        public static string GetIP()
+        {
+            string ip = GetIPAddress();
+            string country = CountryFromIp(ip).ToLower();
+            return ip + " .Country: " + country;
+        }
+        private static string GetIPAddress()
+        {
+            System.Web.HttpContext context = System.Web.HttpContext.Current;
+            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipAddress))
+            {
+                string[] addresses = ipAddress.Split(',');
+                if (addresses.Length != 0)
+                {
+                    return addresses[0];
+                }
+            }
+
+            return context.Request.ServerVariables["REMOTE_ADDR"];
+        }
+
         public static bool IsVietnamese()
         {
-           // string ip = HttpContext.Current.Request.UserHostAddress;
-            string ip = "42.117.67.100";
+           string ip = HttpContext.Current.Request.UserHostAddress;
+            //string ip = "42.117.67.100";
             if (CountryFromIp(ip).ToLower().Equals("vn"))
             {
                 return true;

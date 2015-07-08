@@ -150,9 +150,19 @@
     <Compile Include="Utils\IPToCountryHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\1_jzs.png" />
+    <Content Include="Content\images\2_afy.png" />
+    <Content Include="Content\images\3_koi.png" />
+    <Content Include="Content\images\4_oui.png" />
+    <Content Include="Content\images\5_trs.png" />
+    <Content Include="Content\images\6_hty.png" />
+    <Content Include="Content\images\7_ndf.png" />
+    <Content Include="Content\images\addisplay.png" />
     <Content Include="Content\images\facebook-share-blank.png" />
+    <Content Include="Content\images\leftads.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\play-again.png" />
+    <Content Include="Content\images\textadstopbottom.png" />
     <Content Include="Content\sound\clock-ticking.mp3" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -190,6 +200,7 @@
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="policy.html" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap\css\bootstrap.css.map" />

@@ -6,13 +6,13 @@
     string infoGame = "Which one of the boxes has an irregular color?<br />Choose it";
     string yourScore = "Your score";
     string shareFacebook = "Share on Facebook<br/>and challenge your friends";
-    string bat = "You are a Bat <br/> You can't see anything in dark <br/> Be careful!!!";
-    string mole = "You are a Mole <br/> You can see closest things <br/>But don't go far away!";
-    string dog = "You are a Dog <br/> You can see almost food in dark <br/>But sometimes not lucky!";
-    string cat = "You are a Cat <br/> You see very good in dark <br/>But the mouse can hide!";
-    string tiger = "You are a Tiger <br/> You can see through the forest <br/>Excellent!";
-    string hawk = "You are a Hawk <br/> You can see very far <br/>Even the worm can't escape!";
-    string alien = "You are a Alien <br/> You can see all things <br/>That's incredible!!!";
+    string bat = "<span class='result-1'>Bat</span> <br/> You can't see anything in dark <br/> Be careful!!!";
+    string mole = "<span class='result-1'>Mole</span> <br/> You can see closest things <br/>Don't go far away!";
+    string dog = "<span class='result-1'>Dog</span><br/> You can see almost food in dark <br/>But sometimes not lucky!";
+    string cat = "<span class='result-1'>Cat</span> <br/> You see very good in dark <br/>But the mouse can hide from you!";
+    string tiger = "<span class='result-1'>Tiger</span> <br/> You can see through the forest <br/>Excellent!";
+    string hawk = "<span class='result-1'>Hawk</span> <br/> You can see very far <br/>Even the worm can't escape!";
+    string alien = "<span class='result-1'>Alien</span> <br/> You can see the mosquito from a kilometer<br/>That's incredible!!!";
 
     if (Testing.Utils.Helpers.IsVietnamese())
     {
@@ -23,16 +23,18 @@
         infoGame = "Hình nào có màu sắc khác so với những hình khác?<br /> Hãy chọn nó";
         yourScore = "Điểm của bạn";
         shareFacebook = "Chia sẽ trên Facebook<br/>và thách thức bạn của bạn";
-        bat = "Bạn như là con dơi <br/> Bạn không thể thấy gì về đêm <br/> Hãy cẩn thận!!!";
-        mole = "Bạn là con chuột chũi <br/> Bạn có thể thấy những vật gần nhất <br/>Nhưng đừng đi xa nhé!";
-        dog = "Bạn là con chó <br/> Bạn có thể thấy hầu như mọi thức ăn <br/>Nhưng đôi khi bỏ sót!";
-        cat = "Bạn là con mèo <br/> Bạn có thể thấy rất tôt trong đêm <br/>Nhưng con chuột có thể trốn bạn!";
-        tiger = "Bạn là con cọp <br/> Bạn có thể nhìn xuyên qua rừng <br/>Tuyệt vời!";
-        hawk = "Bạn là con chim ưng <br/> Bạn có thể nhìn thấy rất xa <br/>Con giun cũng không thể thoát khỏi bạn!";
-        alien = "Bạn là người ngoài hành tinh<br/> Bạn thấy mọi thứ <br/>Không thể tin được!!!";
+        bat = "<span class='result-1'>con dơi</span> <br/> Bạn không thể thấy gì về đêm <br/> Hãy cẩn thận!!!";
+        mole = "<span class='result-1'>chuột chũi</span> <br/> Bạn chỉ thấy những vật gần nhất <br/>Đừng đi xa nhé!";
+        dog = "<span class='result-1'>con chó</span> <br/> Bạn có thể thấy hầu như mọi thức ăn <br/>Nhưng đôi khi cũng bỏ sót!";
+        cat = "<span class='result-1'>con mèo</span> <br/> Bạn có thể thấy rất tốt trong đêm <br/>Nhưng con chuột có thể trốn bạn đấy!";
+        tiger = "<span class='result-1'>con cọp</span> <br/> Bạn có thể nhìn xuyên qua cánh rừng <br/>Thật tuyệt vời!";
+        hawk = "<span class='result-1'>chim ưng</span> <br/> Bạn có thể nhìn thấy rất xa <br/>Con giun cũng không thể thoát khỏi bạn!";
+        alien = "<span class='result-1'>người ngoài hành tinh</span><br/> Bạn có thể nhìn thấy con muỗi cách xa hàng km<br/>Thật không thể tin được!!!";
     }
 
 }
+
+<div>@Testing.Utils.Helpers.GetIP()</div>
 <div style="display:none" class="result-wrapper">
     <div class="result_content">
         <div><span class="score-bottom-title">@yourScore:&nbsp;</span><span class="total-score rect-bg-bottom">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="cursor:pointer" onclick="resetGame()" src="~/Content/images/play-again.png" /></div>
@@ -81,10 +83,16 @@
     </div>
 </div>
 
-
+<div id="fbdiv"></div>
 
 <style type="text/css">
-    .wrapper-result-desc {
+    .result-1
+    {
+        font-weight:bold;
+        font-size:1.3em;
+        text-transform:uppercase;
+    }
+     .wrapper-result-desc {
         margin: 20px 0 0;
         border-top: 2px #CECBC0 dashed;
         border-right: 2px #CECBC0 dashed;
@@ -337,7 +345,10 @@
             $(".timeleft").html(timeleft);
             if (timeleft < 6) {
                 $(".timeleft").css("color", "#e20e0e");
-
+            }
+            else
+            {
+                $(".timeleft").css("color", "#1E1E1E");
             }
             if (timeleft > 0 && timeleft < 6) {
                 if (tictok.paused) {
@@ -374,11 +385,11 @@
             }
             if (15 <= score && score < 20) {
                 image = "/Content/images/5_trs.png";
-                text = "@Html.Raw(hawk)";
+                text = "@Html.Raw(tiger)";
             }
             if (20 <= score && score < 30) {
                 image = "/Content/images/6_hty.png";
-                text = "@Html.Raw(tiger)";
+                text = "@Html.Raw(hawk)";
             }
             if (30 <= score) {
                 image = "/Content/images/7_ndf.png";
@@ -398,6 +409,88 @@
             $(".result-wrapper").hide();
             $(".main_content").show();
         }
+
+
+
+
+        $(document).ready(function () {
+            createHtml();
+        });
+
+        //create html //  
+        function createHtml() {
+            var title = "How to Authenticate and Get Data Using Instagram API";
+            var summary = "This article explains how to authenticate an Instagram API and how to get user photos, user details and popular photos using the Instagram API.";
+            var url = "https://www.facebook.com/raj2511984";
+            var image = 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10153182_10153281334431040_8373343421018856197_n.jpg?oh=2f5cbcae8d125e72e0cbc6131c3634ea&oe=552C0BE0&__gda__=1429949942_5641254857be91dda7dd0653815ebf48';
+
+            //login pop height, width  
+            var w = 600;
+            var h = 400;
+            var left = Number((screen.width / 2) - (w / 2));
+            var top = Number((screen.height / 2) - (h / 2));
+            //****//  
+
+            //facebook login window and pass paramemters like title, summary, url, image  
+            var fb = '<a rel="nofollow"   title=\"Share this post on Facebook\" onclick="FbApp_Login(\'' + title + '\',\'' + summary + '\',\'' + url + '\',\'' + image + '\');"><img src="/content/images/facebook-share-blank.png" /></a>';
+            //****//  
+
+            
+
+            //bind social variables into div  
+            $("#fbdiv").append(' <div><table width="100%"><tr><td valign="top" style=" width:100px; height:100px;"><div>' + fb + '</div></td></tr></table> </div>');
+            //****//  
+        }
+
+        var appid = "@Testing.Utils.Helpers.GetFacebookAPI().AppID";
+        // Facebook login  
+        function FbApp_Login(title, sumary, url, image) {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    statusChangeCallback(response, title, summary, url, image);
+                }
+            }, { scope: 'publish_actions' });
+        }
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: appid,
+                cookie: true,  // enable cookies to allow the server to access   
+                xfbml: true,  // parse social plugins on this page  
+                version: 'v2.3' // use version 2.0  
+            });
+
+        };
+
+
+
+        // This is called with the results from from FB.getLoginStatus().  
+        function statusChangeCallback(response, title, summary, url, image) {
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.             
+                FB.ui(
+                  {
+                      method: 'feed',
+                      name: title,
+                      link: url,
+                      picture: image,
+                      caption: title,
+                      description: summary,
+                      // source: url,  
+                      redirect_uri: url,
+                  }
+            )
+
+            }
+        }
+
+        // Load the SDK asynchronously  
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 }
 

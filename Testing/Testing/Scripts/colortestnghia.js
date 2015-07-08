@@ -22,19 +22,21 @@ var colorTestContainerId = 'game';
 var colorTestLevel = 1;
 var colorTestStartTime = 0;
 var colorTestTimeleft = 15;
+var isEndByMissClick = false;
 
 function ColorTestReset(container) {
     if (container) colorTestContainerId = container;
     colorTestLevel = 1;
     colorTestTimeleft = 15;
     colorTestStartTime = 0;
+    isEndByMissClick = false;
     colorTestRenderLevel(colorTestLevel);
     colorTestStartTime = 0;
     colorTestRefreshTime();
 };
 function colorTestUpdateScore() {
     var today = new Date();
-
+    console.log(colorTestTimeleft);
     if (colorTestStartTime > 0) colorTestTimeleft = Math.round(15-(today.getTime()-colorTestStartTime)/1000);
 
     if (colorTestTimeleft < 0) colorTestTimeleft = 0;
@@ -42,12 +44,15 @@ function colorTestUpdateScore() {
     if (colorTestTimeleft > 0) {
         speedtestScoreUpdate((colorTestLevel-1).toFixed(0),colorTestTimeleft);
     } else {
-        speedtestPublishResult((colorTestLevel-1).toFixed(0));
+        if (!isEndByMissClick) {
+            speedtestPublishResult((colorTestLevel - 1).toFixed(0));
+        }
     }
 };
 function colorTestRefreshTime() {
     colorTestUpdateScore();
-    if (colorTestTimeleft > 0) {
+    
+    if (colorTestTimeleft > 0&&colorTestStartTime>0) {
         setTimeout(colorTestRefreshTime, 100);
     }
 }
@@ -90,10 +95,13 @@ function colorTestRenderLevel(level) {
         colorTestRenderLevel(colorTestLevel);
         var today = new Date();
         colorTestStartTime = today.getTime();
-
+        colorTestRefreshTime();
     });
     $('#' + colorTestContainerId + ' DIV.missclick').click(function () {
-        if (colorTestStartTime>0) {
+        if (colorTestStartTime > 0) {
+            colorTestStartTime = 0;
+            colorTestTimeleft = 0;
+            isEndByMissClick = true;
             speedtestPublishResult((colorTestLevel - 1).toFixed(0));
         }
     });
