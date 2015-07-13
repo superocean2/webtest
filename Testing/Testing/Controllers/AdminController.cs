@@ -6,19 +6,17 @@ using System.Web.Mvc;
 
 namespace Testing.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         //
-        // GET: /Home/
-
+        // GET: /Admin/
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult EyeTest()
+        public ActionResult Add()
         {
             return View();
         }
-
-    }
+	}
 }

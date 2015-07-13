@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="test,love test,eye test,color test,healthy test">
+    <meta name="author" content="sam">
+    <link rel="icon" href="~/favicon.png">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="hidden-xs title_wrapper">
+        <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">Quản lý Testing</span>
+    </div>
+
+    <div class="container">
+                @RenderBody()
+    </div> <!-- /container -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
