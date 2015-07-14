@@ -1,8 +1,100 @@
-﻿
+﻿@model Testing.Models.Test
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+<style>
+    .row-wrapper
+    {
+        margin-bottom:30px;
+    }
+</style>
+<form method="post">
+    <div class="row-wrapper row">
+        <div class="col-xs-2">
+            Title:
+        </div>
+        <div class="col-xs-10">
+            @Html.TextBoxFor(c => c.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row-wrapper row">
+        <div class="col-xs-2">
+            Picture:
+        </div>
+        <div class="col-xs-10">
+            <div class="input-group">
+                @Html.TextBoxFor(c => c.PictureUrl, new { @class = "form-control" })
+                <span class="input-group-addon btn btn-primary choose-file-picture">Browse file</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="row-wrapper row">
+        <div class="col-xs-2">
+            Display Picture:
+        </div>
+        <div class="col-xs-10">
+            <div class="input-group">
+                @Html.TextBoxFor(c => c.PictureDisplayUrl, new { @class = "form-control" })
+                <span class="input-group-addon btn btn-primary choose-file-display-picture">Browse file</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row-wrapper row">
+        <div class="col-xs-2">
+            Rectangle Text (x,y,w,h):
+        </div>
+        <div class="col-xs-10">
+            @Html.TextBoxFor(c => c.TextRectangle, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row-wrapper row">
+        <div class="col-xs-2 col-lg-offset-10">
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+    </div>
+</form>
+
+@{
+    string filepath = "";
+    if (ViewBag.url!=null)
+    {
+        filepath = ViewBag.url;
+        filepath = filepath.Trim('~');
+    }
+
+}
+<img src="@filepath" />
+
+@section title
+{
+   Add Testing
+}
+@section scripts
+{
+    <script type="text/javascript">
+        var basePath = "/content/ckfinder/";
+        $(".choose-file-picture").click(function (e) {
+            e.preventDefault();
+            CKFinder.popup(basePath, null, null, setFileFieldPicture)
+        });
+        function setFileFieldPicture(fileUrl)
+        {
+            $("#pictureUrl").val(fileUrl);
+        }
+
+        $(".choose-file-display-picture").click(function (e) {
+            e.preventDefault();
+            CKFinder.popup(basePath, null, null, setFileFieldDisplayPicture)
+        });
+        function setFileFieldDisplayPicture(fileUrl) {
+            $("#pictureDisplayUrl").val(fileUrl);
+        }
+    </script>
 }
 
-<h2>Add</h2>
 

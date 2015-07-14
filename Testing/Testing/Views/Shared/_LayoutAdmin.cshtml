@@ -15,7 +15,7 @@
 <body>
     <div class="hidden-xs title_wrapper">
         <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">Quản lý Testing</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">@RenderSection("title",true)</span>
     </div>
 
     <div class="container">
@@ -23,6 +23,23 @@
     </div> <!-- /container -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script type="text/javascript">
+        function BrowseServer() {
+            // You can use the "CKFinder" class to render CKFinder in a page:
+            var finder = new CKFinder();
+            finder.basePath = '/content/ckfinder/';	// The path for the installation of CKFinder (default = "/ckfinder/").
+            finder.selectActionFunction = setFileField;
+            finder.popup();
+
+            // It can also be done in a single line, calling the "static"
+            // popup( basePath, width, height, selectFunction ) function:
+            // CKFinder.popup( '../', null, null, SetFileField ) ;
+            //
+            // The "popup" function can also accept an object as the only argument.
+            // CKFinder.popup( { basePath : '../', selectActionFunction : SetFileField } ) ;
+        }
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -86,6 +88,167 @@ namespace Testing.Utils
             
 
             return "VN";
+        }
+
+
+        public static string Serialize(object oObject, bool Indent = false)
+        {
+
+            System.Xml.Serialization.XmlSerializer oXmlSerializer = null;
+            System.Text.StringBuilder oStringBuilder = null;
+            System.Xml.XmlWriter oXmlWriter = null;
+            string sXML = null;
+            System.Xml.XmlWriterSettings oXmlWriterSettings = null;
+            System.Xml.Serialization.XmlSerializerNamespaces oXmlSerializerNamespaces = null;
+
+            // -----------------------------------------------------------------------------------------------------------------------
+            // Lage XML
+            // -----------------------------------------------------------------------------------------------------------------------
+            oStringBuilder = new System.Text.StringBuilder();
+            oXmlSerializer = new System.Xml.Serialization.XmlSerializer(oObject.GetType());
+            oXmlWriterSettings = new System.Xml.XmlWriterSettings();
+            oXmlWriterSettings.OmitXmlDeclaration = true;
+            oXmlWriterSettings.Indent = Indent;
+            oXmlWriter = System.Xml.XmlWriter.Create(new System.IO.StringWriter(oStringBuilder), oXmlWriterSettings);
+            oXmlSerializerNamespaces = new System.Xml.Serialization.XmlSerializerNamespaces();
+            oXmlSerializerNamespaces.Add(string.Empty, string.Empty);
+            oXmlSerializer.Serialize(oXmlWriter, oObject, oXmlSerializerNamespaces);
+            oXmlWriter.Close();
+            sXML = oStringBuilder.ToString();
+
+            return sXML;
+        }
+
+        public static object DeSerialize(string sXML, Type ObjectType)
+        {
+            System.IO.StringReader oStringReader = null;
+            System.Xml.Serialization.XmlSerializer oXmlSerializer = null;
+            object oObject = null;
+
+            // -----------------------------------------------------------------------------------------------------------------------
+            // Hvis mangler info, lage tom
+            // -----------------------------------------------------------------------------------------------------------------------
+            if (sXML == string.Empty)
+            {
+                Type[] types = new Type[-1 + 1];
+                ConstructorInfo info = ObjectType.GetConstructor(types);
+                object targetObject = info.Invoke(null);
+                if (targetObject == null)
+                    return null;
+                return targetObject;
+            }
+
+            // -----------------------------------------------------------------------------------------------------------------------
+            // Gjøre om fra XML til objekt
+            // -----------------------------------------------------------------------------------------------------------------------
+            oStringReader = new System.IO.StringReader(sXML);
+            oXmlSerializer = new System.Xml.Serialization.XmlSerializer(ObjectType);
+
+            try
+            {
+                oObject = oXmlSerializer.Deserialize(oStringReader);
+            }
+            catch (Exception ex)
+            {
+                throw (new Exception(ex.Message + "\nStacktrace:\n" + ex.InnerException.StackTrace + "\nXML:\n" + sXML));
+            }
+
+            return oObject;
+        }
+
+
+        public static ulong GetRandomLong()
+        {
+            Random rnd = null;
+            if (rnd == null) rnd = new Random((int)DateTime.Now.Ticks);
+            byte[] buf = new byte[8];
+            rnd.NextBytes(buf);
+            return BitConverter.ToUInt64(buf, 0);
+        }
+
+        public static int GetRandomInteger()
+        {
+            Random rnd = null;
+            if (rnd == null) rnd = new Random((int)DateTime.Now.Ticks);
+            return Math.Abs(Convert.ToInt32(rnd.Next(int.MaxValue - 10000) + 10000));
+
+            //return Convert.ToInt32(Math.Abs(10000 + (VBMath.Rnd() * (int.MaxValue - 10000))));
+        }
+
+        public static int GetRandomInteger(int minValue, int maxValue)
+        {
+            Random rnd = null;
+            if (rnd == null) rnd = new Random((int)DateTime.Now.Ticks);
+            return Convert.ToInt32(rnd.Next(minValue, maxValue));
+        }
+
+
+        public static string RandomString()
+        {
+            Random rnd = new Random();
+            int seed = rnd.Next(1, int.MaxValue);
+            const string allowedChars = "abcdefghijkmnopqrstuvwxyz0123456789";
+
+            var chars = new char[11];
+            var rd = new Random(seed);
+
+            for (var i = 0; i < 11; i++)
+            {
+
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+
+            }
+
+            return new string(chars);
+        }
+
+
+
+        public static string PasswordGenerator(int passwordLength, bool strongPassword)
+        {
+            Random rnd = new Random();
+            int seed = rnd.Next(1, int.MaxValue);
+            //const string allowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            const string allowedChars = "abcdefghijkmnopqrstuvwxyz0123456789";
+            const string specialCharacters = @"!#$%&'()*+,-./:;<=>?@[\]_";
+
+            var chars = new char[passwordLength];
+            var rd = new Random(seed);
+
+            for (var i = 0; i < passwordLength; i++)
+            {
+                // If we are to use special characters
+                if (strongPassword && i % rnd.Next(3, passwordLength) == 0)
+                {
+                    chars[i] = specialCharacters[rd.Next(0, specialCharacters.Length)];
+                }
+                else
+                {
+                    chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+                }
+            }
+
+            return new string(chars);
+        }
+
+        public static Image DrawText(string pictureUrl,String text, Font font, Color textColor)
+        {
+            //first, create a dummy bitmap just to get a graphics object
+            Image img = new Bitmap(pictureUrl);
+            Graphics drawing = Graphics.FromImage(img);
+            //paint the background
+            drawing.Clear(Color.Transparent);
+
+            //create a brush for the text
+            Brush textBrush = new SolidBrush(textColor);
+
+            drawing.DrawString(text, font, textBrush, 50, 50);
+
+            drawing.Save();
+
+            textBrush.Dispose();
+            drawing.Dispose();
+            return img;
         }
     }
 }
