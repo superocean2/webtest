@@ -231,18 +231,21 @@ namespace Testing.Utils
             return new string(chars);
         }
 
-        public static Image DrawText(string pictureUrl,String text, Font font, Color textColor)
+        public static Image DrawText(string pictureUrl,String text, Font font, Color textColor,int x,int y,int spacing)
         {
-            //first, create a dummy bitmap just to get a graphics object
             Image img = new Bitmap(pictureUrl);
             Graphics drawing = Graphics.FromImage(img);
-            //paint the background
-            drawing.Clear(Color.Transparent);
-
+            drawing.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            drawing.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             //create a brush for the text
             Brush textBrush = new SolidBrush(textColor);
-
-            drawing.DrawString(text, font, textBrush, 50, 50);
+           
+            string[] arr = text.Split(';');
+            for (int i = 0; i < arr.Length;i++ )
+            {
+                drawing.DrawString(arr[i], font, textBrush, x, y+i*spacing);
+            }
+            
 
             drawing.Save();
 

@@ -474,13 +474,15 @@
     <Content Include="Content\images\6_hty.png" />
     <Content Include="Content\images\7_ndf.png" />
     <Content Include="Content\images\addisplay.png" />
-    <Content Include="Content\images\eye-testing-icon.png" />
+    <Content Include="Content\images\origin\eye-testing-icon.png" />
     <Content Include="Content\images\facebook-share-blank.png" />
     <Content Include="Content\images\leftads.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\origin\alien.png" />
     <Content Include="Content\images\play-again.png" />
     <Content Include="Content\images\textadstopbottom.png" />
     <Content Include="Content\sound\clock-ticking.mp3" />
+    <Content Include="Content\texts\aliensaid.txt" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -537,6 +539,9 @@
     <Content Include="Content\IP2Country.CSV" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Content\ckfinder\userfiles\.htaccess" />
+    <Content Include="Content\fonts\chuviet1.ttf" />
+    <Content Include="Content\fonts\chuviet.ttf" />
+    <Content Include="Content\fonts\result_score.ttf" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\colortestnghia.js" />
     <Content Include="Scripts\colortest.js" />

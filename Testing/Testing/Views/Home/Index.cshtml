@@ -1,64 +1,54 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Funny";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
-   
+
 }
 <style>
-    .wrapper-content
-    {
-        text-align:center;
+    .wrapper-content {
+        text-align: center;
+        padding:10px;
+        border: 1px dashed #808080;
+        height:370px;
     }
-    .main-wrapper
-    {
-        border: solid 10px #ff6a00;
-        border-radius:5px;
-        padding:20px;
+
+    .main-wrapper {
+        padding: 20px;
     }
+
     .row-wrapper {
         padding: 20px;
-        border: 1px dashed #808080;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .content-list {
+        margin: 10px 0;
     }
 </style>
 <div class="row main-wrapper">
     <div class="col-xs-12 col-sm-6 col-md-4 row-wrapper">
         <div class="img-responsive wrapper-content">
-            <img src="~/content/images/eye-testing-icon.png" alt="" />
-            <div class="content-list">Đây là bài kiểm tra khả năng nhận biêt màu sắc của mắt bạn. Mỗi người có khả năng phân biệt màu sắc khác nhau. 
-            Hãy xem bạn có thể phân biệt được bao nhiêu màu nhé!</div>
+            <a href="/home/eyetest">
+                <img src="~/content/images/origin/eye-testing-icon.png" alt="" />
+            </a>
+            <div class="content-list">
+                Mỗi người có khả năng phân biệt màu sắc khác nhau.
+                Hãy xem thử khả năng của bạn
+            </div>
+            <a href="/home/eyetest" class="btn btn-success">Chơi ngay</a>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4 row-wrapper">
         <div class="img-responsive wrapper-content">
-            <img src="~/content/images/eye-testing-icon.png" alt="" />
+            <a href="/home/eyetest">
+                <img src="~/content/images/origin/alien.png" alt="" />
+            </a>
             <div class="content-list">
-                Đây là bài kiểm tra khả năng nhận biêt màu sắc của mắt bạn. Mỗi người có khả năng phân biệt màu sắc khác nhau.
-                Hãy xem bạn có thể phân biệt được bao nhiêu màu nhé!
+                Xem thử người ngoài hành tinh nói gì về bạn
             </div>
-        </div>
-    </div><div class="col-xs-12 col-sm-6 col-md-4 row-wrapper">
-    <div class="img-responsive wrapper-content">
-        <img src="~/content/images/eye-testing-icon.png" alt="" />
-        <div class="content-list">
-            Đây là bài kiểm tra khả năng nhận biêt màu sắc của mắt bạn. Mỗi người có khả năng phân biệt màu sắc khác nhau.
-            Hãy xem bạn có thể phân biệt được bao nhiêu màu nhé!
+            <a href="/home/aliensaid" class="btn btn-success">Chơi ngay</a>
         </div>
     </div>
-</div><div class="col-xs-12 col-sm-6 col-md-4 row-wrapper">
-    <div class="img-responsive wrapper-content">
-        <img src="~/content/images/eye-testing-icon.png" alt="" />
-        <div class="content-list">
-            Đây là bài kiểm tra khả năng nhận biêt màu sắc của mắt bạn. Mỗi người có khả năng phân biệt màu sắc khác nhau.
-            Hãy xem bạn có thể phân biệt được bao nhiêu màu nhé!
-        </div>
-    </div>
-</div><div class="col-xs-12 col-sm-6 col-md-4 row-wrapper">
-    <div class="img-responsive wrapper-content">
-        <img src="~/content/images/eye-testing-icon.png" alt="" />
-        <div class="content-list">
-            Đây là bài kiểm tra khả năng nhận biêt màu sắc của mắt bạn. Mỗi người có khả năng phân biệt màu sắc khác nhau.
-            Hãy xem bạn có thể phân biệt được bao nhiêu màu nhé!
-        </div>
-    </div>
-</div>
+
 </div>
