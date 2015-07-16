@@ -150,6 +150,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\NameSex.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Helpers.cs" />
@@ -482,6 +483,7 @@
     <Content Include="Content\images\play-again.png" />
     <Content Include="Content\images\textadstopbottom.png" />
     <Content Include="Content\sound\clock-ticking.mp3" />
+    <Content Include="Content\sound\tictok1.mp3" />
     <Content Include="Content\texts\aliensaid.txt" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -519,6 +521,7 @@
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
     <Content Include="policy.html" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css.map" />
@@ -580,6 +583,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Add.cshtml" />
+    <Content Include="Views\Home\AlienSaid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

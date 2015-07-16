@@ -14,46 +14,53 @@
 </head>
 <body>
     @*<nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>*@
+        </nav>*@
     <div class="hidden-xs title_wrapper">
         <a class="navbar-brand" href="/home/index"><img src="~/Content/images/logo.png" alt="" /></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">@RenderSection("titlegame",true)</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title_game">@RenderSection("titlegame", true)</span>
     </div>
 
     <div class="container">
-        <div class="row ads visible-xs-block" style="text-align:center">
-            <img style="width:79%;" src="~/Content/images/textadstopbottom.png" />
-        </div>
-        
-        <div class="row">
-            <div class="col-sm-3 hidden-xs" style="float:left"><img src="~/Content/images/leftads.png" /></div>
-            <div class="col-sm-9">
-                @RenderBody()
-            </div>
-        </div>
+        <div style="margin:0 auto">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs" style="float:left"><img src="~/Content/images/leftads.png" /></div>
+                <div class="col-sm-9 col-xs-12">
+                    @RenderBody()
+                </div>
 
-        <div class="ads">
-            <img style="width:79%;" src="~/Content/images/textadstopbottom.png" />
+                <div class="ads">
+
+                </div>
+
+                @*<div style="float:left">
+                    <div class="fb-page" data-href="https://www.facebook.com/funnynet.net" data-width="180" data-height="80" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/funnynet.net"><a href="https://www.facebook.com/funnynet.net">Funnynet</a></blockquote></div></div>
+                </div>
+                <div class="hidden-xs"><strong>Like Fanpage của Funnynet.net để nhanh chóng cập nhật những thông tin thú vị nhất</strong></div>*@
+
+                @*<div class="fb-comments" data-href="http://funnynet.net/home/@ViewBag.pageUrl" data-numposts="5" data-colorscheme="light"></div>*@ 
+            </div>
+
         </div>
     </div> <!-- /container -->
+    <div id="fb-root"></div>
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -65,9 +72,9 @@
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
+            if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=410938229108210";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>

@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Funny|Alien said";
+}
+<style>
+    .wrapper-form {
+        border-radius: 6px;
+        box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .radio-inline {
+        padding: 0;
+        line-height: 40px;
+    }
+
+    .form-control-static {
+        line-height: 40px;
+    }
+</style>
+
+
+<div class="wrapper-form">
+    <div><strong>Hãy xem ngoài hành tinh nói gì về bạn</strong></div>
+    <div class="hidden-xs" style="padding:30px 40px 0 40px;">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Nhập tên của bạn</span>
+            <input type="text" id="yournameweb" placeholder="Ví dụ: Nguyen Van A" class="form-control" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <div class="visible-xs-inline-block">
+        <div class="form-control-static">Nhập tên của bạn</div>
+        <input type="text" id="yournamemobile" placeholder="Ví dụ: Nguyen Van A" class="form-control" />
+    </div>
+    <div class="radio-wrapper">
+        <input type="radio" name="rdsex" class="radio-inline" /><span class="radio-inline">Nam</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="rdsex" class="radio-inline" /><span class="radio-inline">Nữ</span>
+    </div>
+    <div style="margin-top:20px;">
+        <span id="seeresult" class="btn btn-primary">Xem Kết Quả</span>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $("#seeresult").click(function () {
+            if (!checkRequired) {
+                alert("Xin vui lòng nhập tên và chọn giới tính để bắt đầu trò chơi!")
+                return false;
+            }
+            var name = $("#yournameweb").val();
+            if (name == "") {
+                name = $("#yournamemobile").val();
+            }
+            var sex = $(".radio-wrapper input").first().is(":checked") ? 0 : 1;
+            $.ajax({
+                url: "/home/AlienSaidPost",
+                type: "post",
+                data: "{name:{Name:'"+name+"',Sex:'"+sex+"'}}",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    $(".wrapper-form").html(result);
+                }
+            });
+        });
+
+        function checkRequired() {
+            if (($("#yournameweb").val() == "" && $("#yournamemobile").val() == "") || (!$(".radio-wrapper input").first().is(":checked") && !$(".radio-wrapper input").last().is(":checked"))) {
+                return false;
+            }
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section titlegame
+{
+    Ngoài hành tinh nói gì về bạn
+}

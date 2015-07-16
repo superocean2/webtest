@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Testing.Models;
 
 namespace Testing.Controllers
 {
@@ -20,5 +21,17 @@ namespace Testing.Controllers
             return View();
         }
 
+        public ActionResult AlienSaid()
+        {
+            ViewBag.pageUrl = "aliensaid";
+            return View();
+
+        }
+
+        [HttpPost]
+        public string AlienSaidPost(NameSex name)
+        {
+            return name.Name;
+        }
     }
 }
