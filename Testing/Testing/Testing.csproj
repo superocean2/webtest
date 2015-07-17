@@ -475,6 +475,13 @@
     <Content Include="Content\images\6_hty.png" />
     <Content Include="Content\images\7_ndf.png" />
     <Content Include="Content\images\addisplay.png" />
+    <Content Include="Content\images\fbshare\1.png" />
+    <Content Include="Content\images\fbshare\2.png" />
+    <Content Include="Content\images\fbshare\3.png" />
+    <Content Include="Content\images\fbshare\4.png" />
+    <Content Include="Content\images\fbshare\5.png" />
+    <Content Include="Content\images\fbshare\6.png" />
+    <Content Include="Content\images\fbshare\7.png" />
     <Content Include="Content\images\origin\eye-testing-icon.png" />
     <Content Include="Content\images\facebook-share-blank.png" />
     <Content Include="Content\images\leftads.png" />

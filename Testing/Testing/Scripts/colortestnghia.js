@@ -36,7 +36,6 @@ function ColorTestReset(container) {
 };
 function colorTestUpdateScore() {
     var today = new Date();
-    console.log(colorTestTimeleft);
     if (colorTestStartTime > 0) colorTestTimeleft = Math.round(15-(today.getTime()-colorTestStartTime)/1000);
 
     if (colorTestTimeleft < 0) colorTestTimeleft = 0;

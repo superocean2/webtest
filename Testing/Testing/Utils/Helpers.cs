@@ -13,12 +13,13 @@ namespace Testing.Utils
     {
         public string AppID { get; set; }
         public string AppSecret { get; set; }
+        public string AccessToken { get; set; }
     }
     public static class Helpers
     {
         public static FaceBookAPI GetFacebookAPI()
         {
-            return new FaceBookAPI() { AppID = "410938229108210", AppSecret = "1e6856af57bde3004223b6aba5fbc292" };
+            return new FaceBookAPI() { AppID = "1609669175972439", AppSecret = "275a8738f3d17bfd88e1b741bb218a99", AccessToken = "CAAW3ZCE9wklcBAHTIJd7sqeXXx8rZAsCcZCY7d9U28tZBmsB8Y5UTa8ZA2YdifCPZArcpDEK3bfooZC9Ar2iBeBBdfZBe5vBfTaJdL5wZCTDJU1XFri3PPtME1bY89w24dPBJJr9ZCGa1o6EXoFZBDZAzLN4HykwLcq3LNg47tGHlDw3QdqmQu0MG6kZBRDZArBtfgBzcYKYUqjIs7rMoYzcdpJrpcZBzuOBKkZAiMQZD" };
         }
         public static string GetIP()
         {

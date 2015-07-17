@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Funny|Eye Testing";
     string titleGame = "Eye Testing";
     string scoreText = "Score";
@@ -44,7 +43,7 @@
             </div>
         </div>
         <div class="facebook-share" style="border-right: 2px #CECBC0 dashed;padding-top:20px; ">
-            <div class="share-button">@Html.Raw(shareFacebook)</div>
+            <div id="share-fb-button" onclick="shareOnFacebook()" class="share-button">@Html.Raw(shareFacebook)</div>
         </div>
     </div>
     <div class="ads-main">
@@ -81,8 +80,11 @@
         <div style="padding:5px" onclick="$('#ready').hide();" class="rect-bg">@startText</div>
     </div>
 </div>
-
-<div id="fbdiv"></div>
+<div class="fb-like"
+     data-share="true"
+     data-width="450"
+     data-show-faces="true">
+</div>
 
 <style type="text/css">
     .result-1 {
@@ -338,6 +340,7 @@
     <script src="~/Scripts/colortestnghia.js"></script>
     <script type="text/javascript">
         var tictok = new Audio("/content/sound/tictok1.mp3");
+        var fbimage="";
         ColorTestReset("testboard");
         function speedtestScoreUpdate(score, timeleft) {
             $(".score").html(score);
@@ -345,8 +348,7 @@
             if (timeleft < 6) {
                 $(".timeleft").css("color", "#e20e0e");
             }
-            else
-            {
+            else {
                 $(".timeleft").css("color", "#1E1E1E");
             }
             if (timeleft > 0 && timeleft < 6) {
@@ -368,11 +370,13 @@
             var text;
             if (1 <= score && score < 4) {
                 image = "/Content/images/1_jzs.png";
-                text="@Html.Raw(bat)";
+                text = "@Html.Raw(bat)";
+                fbimage = "/Content/images/fbshare/1.png";
             }
             if (4 <= score && score < 8) {
                 image = "/Content/images/2_afy.png";
                 text = "@Html.Raw(mole)";
+                fbimage = "/Content/images/fbshare/2.png";
             }
             if (8 <= score && score < 11) {
                 image = "/Content/images/3_koi.png";
@@ -394,11 +398,10 @@
                 image = "/Content/images/7_ndf.png";
                 text = "@Html.Raw(alien)";
             }
-            getResult(score,image,text);
+            getResult(score, image, text);
         }
 
-        function getResult(score,image,resultText)
-        {
+        function getResult(score, image, resultText) {
             $(".total-score").html(score);
             $(".wrapper-result-image img").attr("src", image);
             $(".wrapper-result-text").html(resultText);
@@ -409,87 +412,23 @@
             $(".main_content").show();
         }
 
+        var accessToken = "@Testing.Utils.Helpers.GetFacebookAPI().AccessToken";
 
+        function shareOnFacebook() {
+            console.log(fbimage);
+            FB.ui({
+                method: 'feed',
+                link: 'http://funnynet.net',
+                caption: 'Ban dat 14 diem',
+                picture: "http://http://webtest.192.168.1.95.xip.io"+fbimage+"",
+                name: 'Ban co thi luc cua con doi',
+                description:'hay can than nhe!',
 
-
-        $(document).ready(function () {
-            createHtml();
-        });
-
-        //create html //
-        function createHtml() {
-            var title = "How to Authenticate and Get Data Using Instagram API";
-            var summary = "This article explains how to authenticate an Instagram API and how to get user photos, user details and popular photos using the Instagram API.";
-            var url = "https://www.funnynet.net";
-            var image = 'https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10153182_10153281334431040_8373343421018856197_n.jpg?oh=2f5cbcae8d125e72e0cbc6131c3634ea&oe=552C0BE0&__gda__=1429949942_5641254857be91dda7dd0653815ebf48';
-
-            //login pop height, width
-            var w = 600;
-            var h = 400;
-            var left = Number((screen.width / 2) - (w / 2));
-            var top = Number((screen.height / 2) - (h / 2));
-            //****//
-
-            //facebook login window and pass paramemters like title, summary, url, image
-            var fb = '<a rel="nofollow"   title=\"Share this post on Facebook\" onclick="FbApp_Login(\'' + title + '\',\'' + summary + '\',\'' + url + '\',\'' + image + '\');"><img src="/content/images/facebook-share-blank.png" /></a>';
-            //****//
-
-
-
-            //bind social variables into div
-            $("#fbdiv").append(' <div><table width="100%"><tr><td valign="top" style=" width:100px; height:100px;"><div>' + fb + '</div></td></tr></table> </div>');
-            //****//
-        }
-
-        var appid = "@Testing.Utils.Helpers.GetFacebookAPI().AppID";
-        // Facebook login
-        function FbApp_Login(title, sumary, url, image) {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    statusChangeCallback(response, title, summary, url, image);
-                }
-            }, { scope: 'publish_actions' });
-        }
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: appid,
-                cookie: true,  // enable cookies to allow the server to access
-                xfbml: true,  // parse social plugins on this page
-                version: 'v2.3' // use version 2.0
+            }, function (response) {
+                console.log(response);
             });
-
-        };
-
-
-
-        // This is called with the results from from FB.getLoginStatus().
-        function statusChangeCallback(response, title, summary, url, image) {
-            if (response.status === 'connected') {
-                // Logged into your app and Facebook.
-                FB.ui(
-                  {
-                      method: 'feed',
-                      name: title,
-                      link: url,
-                      picture: image,
-                      caption: title,
-                      description: summary,
-                      // source: url,
-                      redirect_uri: url,
-                  }
-            )
-
-            }
         }
 
-        // Load the SDK asynchronously
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
     </script>
 }
 

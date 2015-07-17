@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="test,love test,eye test,color test,healthy test">
-    <meta name="author" content="sam">
+    @RenderSection("metaTag", false)
     <link rel="icon" href="~/favicon.png">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap")
@@ -51,30 +50,29 @@
                 </div>
 
                 @*<div style="float:left">
-                    <div class="fb-page" data-href="https://www.facebook.com/funnynet.net" data-width="180" data-height="80" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/funnynet.net"><a href="https://www.facebook.com/funnynet.net">Funnynet</a></blockquote></div></div>
-                </div>
-                <div class="hidden-xs"><strong>Like Fanpage của Funnynet.net để nhanh chóng cập nhật những thông tin thú vị nhất</strong></div>*@
+                        <div class="fb-page" data-href="https://www.facebook.com/funnynet.net" data-width="180" data-height="80" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/funnynet.net"><a href="https://www.facebook.com/funnynet.net">Funnynet</a></blockquote></div></div>
+                    </div>
+                    <div class="hidden-xs"><strong>Like Fanpage của Funnynet.net để nhanh chóng cập nhật những thông tin thú vị nhất</strong></div>*@
 
-                @*<div class="fb-comments" data-href="http://funnynet.net/home/@ViewBag.pageUrl" data-numposts="5" data-colorscheme="light"></div>*@ 
+                @*<div class="fb-comments" data-href="http://funnynet.net/home/@ViewBag.pageUrl" data-numposts="5" data-colorscheme="light"></div>*@
             </div>
 
         </div>
     </div> <!-- /container -->
-    <div id="fb-root"></div>
     <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '410938229108210',
+                appId: '1609669175972439',
                 xfbml: true,
-                version: 'v2.3'
+                version: 'v2.4'
             });
         };
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=410938229108210";
+            js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
